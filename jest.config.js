@@ -1,5 +1,5 @@
 export default {
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['json', 'lcov', 'text']
+  coverageReporters: ['json', 'lcov', 'text', 'json-summary']
 };
