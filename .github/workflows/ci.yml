@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar Lint
+        run: npm run lint
+
+      - name: Ejecutar pruebas y cobertura
+        run: npx jest --coverage
+
+      - name: Verificar cobertura mínima
+        run: |
+          npx jest --coverage
+          COVERAGE=$(node -p "require('./coverage/coverage-summary.json').total.lines.pct")
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "La cobertura es menor al 80% ($COVERAGE%)"
+            exit 1
+          fi
