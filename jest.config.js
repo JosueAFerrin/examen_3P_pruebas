@@ -1,4 +1,5 @@
 export default {
   collectCoverage: true,
   coverageDirectory: "coverage",
-  coverageReporters: ["json",
+  coverageReporters: ["json", "lcov", "text"]
+};
