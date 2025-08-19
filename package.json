@@ -3,6 +3,7 @@
     "eslint": "^9.33.0",
     "jest": "^30.0.5"
   },
+  "type": "module",
   "name": "examen_3p",
   "version": "1.0.0",
   "main": "index.js",
